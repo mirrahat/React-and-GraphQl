@@ -1,14 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const LOAD_USERS = gql`
-  query {
-    getAllUsers {
-      id
-      firstName
+query SampleQueries {
+  users {
+    id
+    data {
       email
-      password
+      first_name
+      phone
     }
   }
+}
 `;
 
 export const PROFILE_QUERY = gql`

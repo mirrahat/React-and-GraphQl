@@ -15,10 +15,7 @@ const  GetUsers=() =>{
 console.log(data);
   return (
     <div>
-      {/* {" "}
-      {users.map((val) => {
-        return <h1> {val.firstName}</h1>;
-      })} */}
+   <h1>hhhhh</h1>
     </div>
   );
 }

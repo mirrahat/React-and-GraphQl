@@ -1,31 +1,28 @@
 import React from 'react';
-import SecondDashboard from '../../dashboard/SecondDashboard';
+
+import ThirdDashbord from '../../dashboard/ThirdDashbord';
+
 import  { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-
 import { Unique_Post_Query } from "../../queries/query";
 import { PROFILE_QUERY } from "../../queries/query";
+import { LOAD_USERS } from "../../queries/query";
 import {
   useParams
 } from "react-router-dom";
-
 const Postindex = ({children}) => {
   let { id } = useParams();
-
  id='e42fd2b5-b84a-4417-afd2-36cdbaa204dd';
- const { error, loading, data } = useQuery(PROFILE_QUERY);
+ const { error, loading, data } = useQuery(LOAD_USERS);
   //const { error, loading, data } = useQuery(PROFILE_QUERY);
-  
-
- // const { error, loading, data } = useQuery(PROFILE_QUERY);
+  // const { error, loading, data } = useQuery(PROFILE_QUERY);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     if (data) {
       setUsers(data);
     }
   }, [data]);
-  console.log('data po',data?.posts[0]?.data?.title);
-
+ console.log('user data',data);
 
 if(loading){
   return <div><h1></h1></div>
@@ -62,8 +59,8 @@ console.log('first trcak data',data);
                 </div>
               </nav>
             </div>
-            <SecondDashboard
-              data = {data?.posts}
+            <ThirdDashbord
+              data = {data?.users}
               />
           </div>
     
