@@ -18,7 +18,7 @@ const Postindex = ({children}) => {
   let { id } = useParams();
 
  id='e42fd2b5-b84a-4417-afd2-36cdbaa204dd';
- const { error, loading, data } = useQuery(Unique_Post_Query, { variables: {id ,},  });
+ const { error, loading, data } = useQuery(PROFILE_QUERY);
   //const { error, loading, data } = useQuery(PROFILE_QUERY);
   
 

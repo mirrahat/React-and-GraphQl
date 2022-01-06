@@ -9,12 +9,18 @@ const Router = () => {
     <DashboardLayout>
       <Switch>
         <Route exact path={"/"}>
-          <Homepage />
+          <Posts>
+            <Switch>
+            <Route exact path={"/posts/page1/:id"}>
+              <Postpage />
+            </Route>
+            </Switch>
+          </Posts>
         </Route>
         {/* <Route exact path={"/test"}>
           <Testq />
         <Route> */}
-        <Route> 
+        <Route > 
           <Posts>
             <Switch>
             <Route exact path={"/posts/page1/:id"}>

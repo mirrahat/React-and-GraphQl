@@ -20,37 +20,20 @@ import {
 
 const Postpage = () => {
     const [editorState, setEditorState] = useState();
-    // const { error, loading, data } = useQuery(PROFILE_QUERY);
-    const [users, setUsers] = useState([]);
-    const search = window.location.search;
-const params = new URLSearchParams(search);
-    console.log(params);
     const location = useLocation();
-    const postId = location.pathname.split('/')[3];
-  //  const id = location.pathname.split('/')[3];
-  console.log('check    ',location.pathname.split('/')[3]);
-  console.log('post id    ',postId);
+    const id = location.pathname.split('/')[3].toString();
+    const {  data , error,loading} = useQuery(Unique_Post_Query, { variables: {id} });
+    const [title, setTitle] = useState(data ? data?.post?.data?.title : "");
+    const [body, setBody] = useState(data ? data?.post?.data?.body.text : "")
 
-  //let { id } = useParams();
-
-  const  id='e42fd2b5-b84a-4417-afd2-36cdbaa204dd';
-  const {  data , error,loading} = useQuery(Unique_Post_Query, { variables: {id ,},  });
-  //const { error, loading, data } = useQuery(PROFILE_QUERY);
-  
- 
+    useEffect(() => {}, [id, data])
     useEffect(() => {
-        if (data) {
-          setUsers(data);
-        }
-      }, [data]);
-      console.log(data);
-    // const { client, loading, data } = useQuery(
-    //     PROFILE_QUERY,
-    //     { fetchPolicy: "network-only" }
-    //   );
+        setTitle(data?.post?.data?.title);
+        setBody(data?.post?.data?.body.text);
+    }, [data])
 
-    // //   console.log(data);
-    console.log('singlssse data',data);
+    console.log('singlssse data',data?.post?.data?.body.text);
+    console.log('title',data?.post?.data?.title);
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState);
@@ -74,12 +57,18 @@ const params = new URLSearchParams(search);
             <div className={"mt-4"}>
                 <label class="block">
                     <span class="block text-sm font-medium text-base text-bold   text-gray-700">Title</span>
-                    <input type="text" value="Building a Huge site  With React Js Library" class="mt-2 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "/>
+                    <input 
+                        type="text"
+                        class="mt-2 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+                                disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none
+                                invalid:border-pink-500 invalid:text-pink-600
+                                focus:invalid:border-pink-500 focus:invalid:ring-pink-500
+                                "
+                        name="name"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}       
+                    />
                 </label>
             </div>
 
@@ -114,7 +103,11 @@ const params = new URLSearchParams(search);
       disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none
       invalid:border-pink-500 invalid:text-pink-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "/>
+    "
+    name="comment"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)} 
+    />
                 </label>
             </div>
             <div className={"flex mt-8"}>
