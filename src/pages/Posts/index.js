@@ -1,16 +1,19 @@
 import React from 'react';
 import SecondDashboard from '../../dashboard/SecondDashboard';
 import  { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 
 import { Unique_Post_Query } from "../../queries/query";
 import { PROFILE_QUERY } from "../../queries/query";
+import {Update_Post}  from "../../queries/query";
+
 import {
   useParams
 } from "react-router-dom";
 
 const Postindex = ({children}) => {
   let { id } = useParams();
+
 
  id='e42fd2b5-b84a-4417-afd2-36cdbaa204dd';
  const { error, loading, data } = useQuery(PROFILE_QUERY);
@@ -24,14 +27,14 @@ const Postindex = ({children}) => {
       setUsers(data);
     }
   }, [data]);
-  console.log('data po',data?.posts[0]?.data?.title);
+  console.log('data po',data?.posts.length);
 
 
 if(loading){
   return <div><h1></h1></div>
 }
 
-console.log('first trcak data',data);
+// console.log('first trcak data',data);
 
 
    return (
@@ -39,7 +42,7 @@ console.log('first trcak data',data);
             
         
           
-          <div className="flex h-screen bg-gray-100 font-sans overflow-hidden">
+          <div className="flex h-screen bg-gray-100 font-sans overflow-hidden -ml-2 -mt-2">
 
           <div className="flex flex-row flex-wrap flex-1 flex-grow content-start pl-0 ">
           <div
@@ -52,7 +55,7 @@ console.log('first trcak data',data);
                 className="w-auto flex-1 border-b-1 border-gray-300 order-1 lg:order-2"
                 style={{ background: "#062237" }}
               >
-                <div className="flex h-full items-center text-white">
+                <div className="flex h-full items-center text-white  bg-blue-600">
                   <div className="h-16 w-24 cursor-pointer flex justify-center items-center text-center">
                     <h1 className="">Page 1</h1>
                   </div>

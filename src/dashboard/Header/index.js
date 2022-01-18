@@ -4,7 +4,7 @@ const Header = props => {
     return (
         <div className={'container mx-auto pt-4 md:pt-8 pb-5 md:px-14 absolute -top-0 -left-0 z-30 bg-blue-400'}>
             <div className="grid md:grid-cols-2">
-                <div className="flex justify-center md:justify-start items-center">
+                <div className="flex justify-center md:justify-start items-center pb-4">
                     <NavLink to={'/'}>
                         <h1>React GraphQL</h1>
                     </NavLink>

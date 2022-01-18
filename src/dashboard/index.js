@@ -6,8 +6,8 @@ import {
 } from "react-icons/fa";
 import ListItemsWithChilds from "./ListItemsWithChilds";
 import Header from "./Header";
-import SecondDashboard from './SecondDashboard';
 import Posts from '../pages/Posts';
+
 const DashboardLayout = ({ children }) => {
 
 
@@ -17,14 +17,16 @@ const DashboardLayout = ({ children }) => {
         
         style={{ background: "#FFFFFF" }}
       >
-        <h1 className="text-white">GraphQL</h1>
+        <div className="bg-blue-600  justify-content  items-center">
+        <h1 className="text-black  p-5  "> React GraphQL</h1>
+        </div>
         <div className="h-screen menu text-white openNav absolute md:relative flex pt-16 font-open-sans static overflow-hidden  shadow">
           <ul className="list-reset w-full">
             <ListItemsWithChilds
               label={{
                 text: "Users",
                 Icon: FaChessBoard,
-                path: "/users/page1/1",
+                path: "/users/page1",
               }}
             />
 
@@ -38,9 +40,9 @@ const DashboardLayout = ({ children }) => {
 
             <ListItemsWithChilds
               label={{
-                text: "Calender",
+                text: "Comment",
                 Icon: FaRegCalendarAlt,
-                path: "/calendar",
+                path: "/comment/page1",
               }}
             />
           </ul>

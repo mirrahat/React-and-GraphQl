@@ -5,16 +5,16 @@ import {
 
 
 
-const ThirdDashboard = (props) => {
+const SecondDashboard = (props) => {
     return (
         <div className="h-screen menu text-white openNav absolute md:relative flex pt-16 font-open-sans static overflow-hidden  shadow">
           <ul className="list-reset w-full">
            {props.data.map(item => (
                 <ListItemsWithChilds
                 label={{
-                  text: item.title,
+                  text: item.data.title,
                   Icon: FaChessBoard,
-                  path: `/comment/page1/:id/${item.id}`,
+                  path: `/comment/page1/${item.id}`,
                 }}
               />
            ))}
@@ -23,4 +23,4 @@ const ThirdDashboard = (props) => {
     )
 }
 
-export default ThirdDashboard;
+export default SecondDashboard;

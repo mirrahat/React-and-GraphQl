@@ -1,17 +1,45 @@
 import { gql } from "@apollo/client";
 
 export const LOAD_USERS = gql`
-query SampleQueries {
-  users {
-    id
-    data {
+  query {
+    getAllUsers {
+      id
+      firstName
       email
-      first_name
-      phone
+      password
     }
   }
+`;
+export const Update_Post= gql` 
+
+mutation SampleQueries($id:String!,$title:String!){
+  updatePost(_id: $id, title: $title) {
+    data {
+      title
+      body {
+        text
+      }
+    }
+  } 
 }
 `;
+
+
+export const Load_Comment = gql`
+query SampleQueries  {
+  comments {
+    id
+    data {
+      body {
+        text
+      }
+    }
+  }
+  
+}
+`;
+
+
 
 export const PROFILE_QUERY = gql`
 query SampleQueries  {

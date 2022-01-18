@@ -4,6 +4,7 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    headercolor:'#1890FF'
   },
   plugins: [],
 }

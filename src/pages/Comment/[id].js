@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
+// import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import draftToHtml from "draftjs-to-html";
+// import draftToHtml from "draftjs-to-html";
 import { IoCopyOutline } from "react-icons/io5";
 import Profile from "../../hooks/Profile";
 import { useQuery, gql } from "@apollo/client";
@@ -11,10 +11,6 @@ import { Unique_Post_Query } from "../../queries/query";
 import  { useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { PROFILE_QUERY } from "../../queries/query";
-import EditorR from '../../component/EditorR'
-import {useMutation } from "@apollo/client";
-import {Update_Post}  from "../../queries/query";
-
 
 import {
     useParams
@@ -29,9 +25,6 @@ const Postpage = () => {
     const {  data , error,loading} = useQuery(Unique_Post_Query, { variables: {id} });
     const [title, setTitle] = useState(data ? data?.post?.data?.title : "");
     const [body, setBody] = useState(data ? data?.post?.data?.body.text : "")
-    const [updatePost, result] = useMutation(Update_Post);
-
-    console.log('hello', id, title, result.error);
 
     useEffect(() => {}, [id, data])
     useEffect(() => {
@@ -39,14 +32,14 @@ const Postpage = () => {
         setBody(data?.post?.data?.body.text);
     }, [data])
 
-    console.log('singlssse data',data?.post?.data);
+    // console.log('singlssse data',data?.post?.data?.body.text);
     // console.log('title',data?.post?.data?.title);
 
     const onEditorStateChange = (editorState) => {
-        // console.log('asfaf',editorState);
         setEditorState(editorState);
       };
 
+    
 
     //   console.log(editorState.getCurrentContent());
     
@@ -56,7 +49,7 @@ const Postpage = () => {
                 <div  className={"block text-2xl font-medium text-gray-700 text-bold"}> Edit a Post</div>
                 <div  className={"flex  border rounded-lg h-8 border-cyan-400 pr-4 pl-4"}> 
                     <div className={"mr-4 pt-2"} ><IoCopyOutline/></div>
-                        <div className="cursor-pointer" onClick={() => updatePost({variables: {id: id, title: "Hello from rahat"}})}> Update</div>
+                        <div> Update</div>
 
                 </div>
             </div>
@@ -93,7 +86,6 @@ const Postpage = () => {
             editorClassName="editorClassName"
               onEditorStateChange={onEditorStateChange}
         />
-        {/* <EditorR body={data?.post?.data} /> */}
         {/* <Profile /> */}
           </label>
         </div>
@@ -148,10 +140,10 @@ const Postpage = () => {
         {/* hello */}
       
 
-       {editorState && <textarea
+       {/* {editorState && <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        ></textarea>}
+        ></textarea>} */}
         
  
 <div>
